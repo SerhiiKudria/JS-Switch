@@ -1,71 +1,76 @@
-const weekDay = Number(prompt("Enter the day number"));
-switch (weekDay) {
-  case 1:
-    alert("Monday");
-    break;
-  case 2:
-    alert("Tuesday");
-    break;
-  case 3:
-    alert("Wednesday");
-    break;
-  case 4:
-    alert("Thursday");
-    break;
-  case 5:
-    alert("Friday");
-    break;
-  case 6:
-    alert("Saturday");
-    break;
-  case 7:
-    alert("Sunday");
-    break;
-  default:
-    alert("incorrect number");
-    break;
+//1
+const customer = {
+  firstName: "Test",
+  lastName: "Testovich",
+  email: "test@gmail.com",
+  password: "qwerty",
+  phoneNumber: "123456",
+  adress: {
+    city: "Tokio",
+    street: "Shevchenka",
+    houseNumber: "1A",
+    apt: "!23",
+  },
+  getAdress() {
+    return this.adress;
+  },
+  setPhoneNumber(phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  },
+};
+
+customer.setPhoneNumber("2344");
+console.log("customer.getAdress()", customer.getAdress());
+
+customer.isMale = true;
+delete customer.adress;
+console.log("customer", customer);
+
+const customerTwin = Object.assign({}, customer);
+console.log("customerTwin", customerTwin);
+const customerTwinTwin = { ...customer };
+console.log("customerTwinTwin", customerTwinTwin);
+
+//2
+const cat = {
+  name: "Murka",
+  color: "black",
+  isMale: false,
+  isFurnitureDemage: true,
+};
+
+for (const key in cat) {
+  console.log(`cat.${key} = ${cat[key]}`);
 }
 
-const day = 10;
-switch (weekDay) {
-  case 1:
-  case 2:
-  case 3:
-  case 4:
-  case 5:
-  case 6:
-  case 7:
-  case 8:
-  case 9:
-  case 10:
-    alert("first decade");
-    break;
-  case 11:
-  case 12:
-  case 13:
-  case 14:
-  case 15:
-  case 16:
-  case 17:
-  case 18:
-  case 19:
-  case 20:
-    alert("second decade");
-    break;
-  case 21:
-  case 22:
-  case 23:
-  case 24:
-  case 25:
-  case 26:
-  case 27:
-  case 28:
-  case 29:
-  case 30:
-  case 31:
-    alert("third decade");
-    break;
-  default:
-    alert("incorrect number");
-    break;
+//3
+function Book(autor, title, year, publishingHouse, price) {
+  this.autor = autor;
+  this.title = title;
+  this.year = year;
+  this.publishingHouse = publishingHouse;
+  this.price = price;
+  this.getAge = function () {
+    return new Date().getFullYear() - this.year;
+  };
+  this.setPrice = function (price) {
+    this.price = price;
+  };
 }
+
+function PublishingHouse(city, title) {
+  this.city = city;
+  this.title = title;
+}
+
+const book = new Book(
+  "Some autor",
+  "Some title",
+  2000,
+  new PublishingHouse("London", "PH"),
+  200
+);
+
+book.setPrice(300);
+console.log("book.getAge()", book.getAge());
+console.log("book", book);
